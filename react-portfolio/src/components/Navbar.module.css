@@ -1,54 +1,77 @@
 /** @format */
 
 .NavArea {
-  height: 10vh;
+  height: 72px;
   display: flex;
-  z-index: 1;
+  z-index: 100;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
-  border-bottom: 1px solid var(--background);
-  background-color: var(--background);
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 0 40px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
   position: fixed;
   top: 0;
   width: 100%;
+  transition: all var(--transition-smooth);
 }
+
 .NavAreaLogo {
   border: 1px solid transparent;
   border-radius: 50%;
   height: 50px;
 }
+
 .navAreaListItems {
   display: flex;
-  gap: 20px;
+  gap: 8px;
   list-style-type: none;
 }
+
 .navAreaListItem {
-  color: var(--darktext);
+  color: var(--text);
   text-decoration: none;
   cursor: pointer;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 1rem;
+  padding: 6px 14px;
   position: relative;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
 }
+
+.navAreaListItem a {
+  color: var(--text);
+  transition: color var(--transition-fast);
+}
+
+.navAreaListItem:hover {
+  background: rgba(255, 107, 107, 0.08);
+}
+.navAreaListItem:hover a {
+  color: var(--primary-color);
+}
+
 .navAreaListItem::before {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 100%;
+  left: 50%;
+  right: 50%;
+  bottom: 2px;
   height: 2px;
-  background-color: var(--primary-color);
-  transition: right 0.8s ease;
+  background: var(--primary-gradient);
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .navAreaListItem:hover::before {
-  right: 0;
+  left: 20%;
+  right: 20%;
 }
 
 .navAreaContact {
@@ -57,9 +80,9 @@
   border-radius: 8px;
 }
 .navAreaContact:hover {
-  color: rgb(229, 96, 96);
-  text-decoration: underline;
+  color: var(--primary-color);
 }
+
 .sideIcon {
   color: var(--primary-color);
   display: flex;
@@ -67,43 +90,61 @@
   align-items: center;
   height: 100%;
   gap: 10px;
-  div {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    object-fit: contain;
-    border: 1.5px solid var(--primary-color);
-    background-image: url(../../public/images/profilebw.png);
-    background-size: 2.55rem;
-    background-position: center;
-    overflow: hidden;
-  }
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+.sideIcon div {
+  height: 2.8rem;
+  width: 2.8rem;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid var(--primary-color);
+  background-image: url(../../public/images/profilebw.png);
+  background-size: 2.55rem;
+  background-position: center;
+  overflow: hidden;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+  transition: all var(--transition-smooth);
+}
+.sideIcon div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 5px rgba(255, 107, 107, 0.2);
 }
 
 .menuIcon {
   display: none;
-  color: var(--black);
+  color: var(--text);
   margin: 0 10px;
 }
+
 .navRightPart {
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 
 .navAreaListItem:last-child {
   position: relative;
 }
 
+/* ============================================
+   THEME MODAL
+   ============================================ */
+
 .themesModal {
   position: fixed;
-  top: 4rem;
+  top: 72px;
   right: 0;
-  z-index: 1;
+  z-index: 1000;
 }
 .themesModal div {
   height: 100vh;
   width: 100vw;
-  background-color: #000000d4;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,6 +152,8 @@
   flex-direction: column;
   gap: 2rem;
   font-size: 1.5rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
   color: white;
 }
 .bothLists {
@@ -124,33 +167,59 @@
   gap: 15px;
 }
 .themesModal div span ul li {
-  height: 2rem;
-  width: 150px;
-  border-radius: 1rem;
+  height: 2.5rem;
+  width: 160px;
+  border-radius: var(--radius-full);
   z-index: 100;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  border: 2px solid transparent;
+}
+.themesModal div span ul li:hover {
+  transform: scale(1.05);
+  border-color: white;
 }
 .icon {
   color: var(--primary-color) !important;
+  transition: transform var(--transition-smooth) !important;
 }
+.icon:hover {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
 
 @media screen and (max-width: 450px) {
   .NavArea {
-    height: 4rem;
+    height: 60px;
+    padding: 0 16px;
   }
   .navAreaListItems {
     display: none;
     flex-direction: column;
     position: absolute;
     right: 0;
-    top: 2.5rem;
-    background-color: var(--primary-color);
-    margin: 1rem 1rem;
-    padding: 1rem 3rem;
+    top: 60px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    margin: 0;
+    padding: 1rem 2rem;
     z-index: 100;
-    color: var(--darktext) !important;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+  }
+  .navAreaListItem {
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
   }
   .navAreaListItem a {
-    color: var(--text-light);
+    color: var(--text);
+    font-size: 1rem;
   }
   .navRightPart {
     gap: 5px;
@@ -166,12 +235,12 @@
     cursor: pointer;
   }
   .menuIcon svg {
-    font-size: 2.5rem !important;
+    font-size: 2rem !important;
     margin-top: 3px;
   }
   .themesModal {
     top: 0;
-    right: 1rem;
+    right: 0;
   }
   .bothLists {
     gap: 1rem;

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -10,18 +10,8 @@ const SingleProject = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const {
-    id,
-    name,
-    category,
-    tags,
-    filters,
-    description,
-    code,
-    link,
-    frontImage,
-    images,
-  } = location.state;
+  const { name, category, tags, description, code, link, frontImage } =
+    location.state;
   return (
     <div className="project_fc">
       <CancelIcon
@@ -32,9 +22,10 @@ const SingleProject = () => {
         <img
           className="project_fc_image"
           src={frontImage}
+          alt={name}
         />
         <h1 className="text_normal">{name}</h1>
-        <h3 className="text_blue bold">Category :- {category}</h3>
+        <h3 className="text_blue bold">Category: {category}</h3>
         <p className="project_tags text_normal bold">
           {tags.map((item, key) => (
             <li key={key}>{item} </li>
@@ -42,36 +33,37 @@ const SingleProject = () => {
         </p>
       </div>
       <div className="project_fc_right_div">
-        <h1>Description</h1>
+        <h1>Overview</h1>
         <ul
           id="projectDesc"
           className="project_desc text_normal">
           {description.map((des, index) => (
-            <li>👉{des}</li>
+            <li key={index}>{des}</li>
           ))}
         </ul>
         <div className="project_button_box">
-          <a
-            href={link}
-            target="_blank">
-            <button className="project_button text_normal">
-              {" "}
-              <GitHubIcon />
-              Live
-            </button>
-          </a>
-          <a
-            href={code}
-            target="_blank">
-            <button className="project_button text_normal">
-              <LanguageIcon />
-              View Code
-            </button>
-          </a>
-          {/* <p className="readme_link"> */}
-          {/* <a href="">Read Full Documentation</a> */}
-          {/* </p> */}
-          {/* <button className="project_button text_normal">A glimpse</button> */}
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer">
+              <button className="project_button text_normal">
+                <LanguageIcon />
+                View Live
+              </button>
+            </a>
+          )}
+          {code && (
+            <a
+              href={code}
+              target="_blank"
+              rel="noopener noreferrer">
+              <button className="project_button text_normal">
+                <GitHubIcon />
+                View Code
+              </button>
+            </a>
+          )}
         </div>
       </div>
     </div>

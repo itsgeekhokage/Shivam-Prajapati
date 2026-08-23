@@ -1,20 +1,27 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+};
 
 const Education = () => {
   let [tran, setTran] = useState(0);
   let [full, setFull] = useState(0);
   let [content, setContent] = useState(
-    "Hover on the dots in between to explore full"
+    "Hover a milestone on the timeline to view details"
   );
 
   const general = (
     <p className="moving-element move-top">
-      <h1 className="text_blue"> My Education </h1>
+      <h1 className="text_blue"> Education </h1>
       <p className="text_normal">
         {" "}
-        Here is a quick Timeline of my educational journey
+        Academic timeline — IIT (BHU) Varanasi and earlier
       </p>
     </p>
   );
@@ -51,10 +58,14 @@ const Education = () => {
     <>
       <h1 className="text_orange"> Bachelor Of Technology </h1>
       <h3 className="text_normal"> Indian Institute of Technology, Varanasi</h3>
-      <h2 className="text_white"> CGPA :- 8.33</h2>
+      <h2 className="text_white"> GPA :- 8.14 / 10</h2>
       <h3 className="text_normal">
         {" "}
         Branch - Pharmaceutical Engineering and Technology
+      </h3>
+      <h3 className="text_normal">
+        {" "}
+        Duration: 2021 – 2025
       </h3>
     </>
   );
@@ -67,105 +78,137 @@ const Education = () => {
     }
   };
 
-    useEffect(() => {
-      const scrollToTop = () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      };
-
-      setTimeout(scrollToTop, 200);
-    }, []);
-
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+    setTimeout(scrollToTop, 200);
+  }, []);
 
   return (
-    <div
+    <motion.div
       id="education"
-      className="education">
-      <div className="ed_description">{general}</div>
-      {full === 0 ? (
-        <div className="ed_main_row">
-          <div className="education_timeline moving-element move-left">
-            <div className="education_line"></div>
-            <div className="education_timeBoxes">
-              <div
-                className="education_timeBox"
-                onMouseOver={() => {
-                  setContent(HighSchool);
-                  setTran(1);
-                }}
-                onMouseLeave={() => {
-                  setContent("Hover on the dots in between to explore full");
-                  setTran(0);
-                }}>
-                <div className="ed_box text_normal">2019</div>
-                <div className="ed_lines"></div>
-                <div className="ed_circle"></div>
-                <div className="ed_lines"></div>
-                <div className="ed_box text_normal"> High School </div>
+      className="education"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <motion.div
+        className="ed_description"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        {general}
+      </motion.div>
+
+      <AnimatePresence mode="wait">
+        {full === 0 ? (
+          <motion.div
+            className="ed_main_row"
+            key="timeline"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <motion.div
+              className="education_timeline"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="education_line"></div>
+              <div className="education_timeBoxes">
+                {[
+                  { year: "2019", label: "High School", data: HighSchool },
+                  { year: "2021", label: "InterMediate", data: Intermediate },
+                  { year: "2025", label: "B. Tech", data: BTech },
+                ].map((item, i) => (
+                  <motion.div
+                    className="education_timeBox"
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + i * 0.15 }}
+                    onMouseOver={() => {
+                      setContent(item.data);
+                      setTran(1);
+                    }}
+                    onMouseLeave={() => {
+                      setContent(
+                        "Hover a milestone on the timeline to view details"
+                      );
+                      setTran(0);
+                    }}
+                  >
+                    <div className="ed_box text_normal">{item.year}</div>
+                    <div className="ed_lines"></div>
+                    <motion.div
+                      className="ed_circle"
+                      whileHover={{ scale: 1.8 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    ></motion.div>
+                    <div className="ed_lines"></div>
+                    <div className="ed_box text_normal"> {item.label} </div>
+                  </motion.div>
+                ))}
               </div>
-              <div
-                className="education_timeBox"
-                onMouseOver={() => {
-                  setContent(Intermediate);
-                  setTran(1);
-                }}
-                onMouseLeave={() => {
-                  setContent("Hover on the dots in between to explore full");
-                  setTran(0);
-                }}>
-                <div className="ed_box text_normal">2021</div>
-                <div className="ed_lines"></div>
-                <div className="ed_circle"></div>
-                <div className="ed_lines"></div>
-                <div className="ed_box text_normal"> InterMediate </div>
-              </div>
-              <div
-                className="education_timeBox"
-                onMouseOver={() => {
-                  setContent(BTech);
-                  setTran(1);
-                }}
-                onMouseLeave={() => {
-                  setContent("Hover on the dots in between to explore full");
-                  setTran(0);
-                }}>
-                <div className="ed_box text_normal">Current</div>
-                <div className="ed_lines"></div>
-                <div className="ed_circle"></div>
-                <div className="ed_lines"></div>
-                <div className="ed_box text_normal"> B. Tech </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="ed_edFullBox moving-element move-right"
-            style={
-              content === "Hover on the dots in between to explore full"
-                ? { height: "auto", color: "rgb(238, 255, 0)" }
-                : {}
-            }>
-            {content}
-          </div>
-        </div>
-      ) : (
-        <div className="ed_main_row">
-          <div className="ed_edFullBox moving-element move-left">
-            {HighSchool}
-          </div>
-          <div className="ed_edFullBox moving-element move-left">
-            {Intermediate}
-          </div>
-          <div className="ed_edFullBox moving-element move-left">{BTech}</div>
-        </div>
-      )}
-      <div className="full_ed_button moving-element move-bottom">
+            </motion.div>
+            <motion.div
+              className="ed_edFullBox"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              style={
+                content ===
+                "Hover a milestone on the timeline to view details"
+                  ? { height: "auto", color: "rgb(238, 255, 0)" }
+                  : {}
+              }
+            >
+              {content}
+            </motion.div>
+          </motion.div>
+        ) : (
+          <motion.div
+            className="ed_main_row"
+            key="fullview"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {[HighSchool, Intermediate, BTech].map((edu, i) => (
+              <motion.div
+                className="ed_edFullBox"
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+              >
+                {edu}
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        className="full_ed_button"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
         <button onClick={fullHandler}>
-          {full == 0 ? "Read Full Timeline" : "Back"}
+          {full === 0 ? "Read Full Timeline" : "Back"}
         </button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

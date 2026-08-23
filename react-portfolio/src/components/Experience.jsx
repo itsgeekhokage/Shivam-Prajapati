@@ -1,16 +1,50 @@
 /** @format */
 
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import experience from "../assets/experience";
 
-const Item = ({ item }) => {
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+};
+
+const Item = ({ item, index }) => {
   return (
-    <div className="exp_item">
-      <div className="exp_timeline_icon">
+    <motion.div
+      className="exp_item"
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.4, 0, 0.2, 1],
+      }}
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <motion.div
+        className="exp_timeline_icon"
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
+        transition={{
+          duration: 0.4,
+          delay: index * 0.1 + 0.2,
+          type: "spring",
+          stiffness: 200,
+        }}
+        viewport={{ once: true }}
+      >
         <WorkHistoryIcon />
-      </div>
-      <div className="exp_card">
+      </motion.div>
+      <motion.div
+        className="exp_card"
+        whileHover={{
+          y: -4,
+          transition: { duration: 0.3 },
+        }}
+      >
         <h1>{item.company}</h1>
         <div className="exp_card_second_row">
           <h3 className="text_orange">{item.title}</h3>
@@ -25,7 +59,7 @@ const Item = ({ item }) => {
         </div>
         {item.links.length > 0 && (
           <div>
-            <span className="text_orange">Links :- </span>
+            <span className="text_orange">Links: </span>
             {item.links.map((link, key) => (
               <a
                 href={link.link}
@@ -38,7 +72,7 @@ const Item = ({ item }) => {
         )}
         {item.projects.length > 0 && (
           <div>
-            <span className="text_orange">Works :- </span>
+            <span className="text_orange">Shipped: </span>
             {item.projects.map((link, key) => (
               <a
                 href={link.link}
@@ -49,12 +83,15 @@ const Item = ({ item }) => {
             ))}
           </div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
 const Experience = () => {
+  const professional = experience.filter((item) => item.type !== "campus");
+  const campus = experience.filter((item) => item.type === "campus");
+
   useEffect(() => {
     const scrollToTop = () => {
       window.scrollTo({
@@ -62,31 +99,65 @@ const Experience = () => {
         behavior: "smooth",
       });
     };
-
     setTimeout(scrollToTop, 200);
   }, []);
 
   return (
-    <div className="exp">
-      <h1>Experience</h1>
-      <h6>
-        Bringing a blend of innovation, expertise, and dedication to every
-        project, ensuring impactful results
-      </h6>
+    <motion.div
+      className="exp"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        Experience
+      </motion.h1>
+      <motion.h6
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        3+ years shipping production systems — from survey infrastructure
+        processing 300K+ daily responses to AI microservices and analytics
+        platforms.
+      </motion.h6>
       <div>
-        {/* <div className="exp_background_line"></div> */}
         <div className="exp_list_area">
-          {experience.map((item, key) => {
+          {professional.map((item, key) => {
             return (
               <Item
                 item={item}
                 key={key}
+                index={key}
               />
             );
           })}
         </div>
+        <motion.div
+          className="exp_list_area"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="exp_section_title">Campus Leadership — IIT BHU</h2>
+          {campus.map((item, key) => {
+            return (
+              <Item
+                item={item}
+                key={key}
+                index={key}
+              />
+            );
+          })}
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

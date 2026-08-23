@@ -43,7 +43,7 @@ const Navbar = () => {
       <div className={styles.sideIcon}>
         {" "}
         <div></div>
-        Welcome
+        Shivam Prajapati
       </div>
       <div className={styles.navRightPart}>
         <div
@@ -73,7 +73,7 @@ const Navbar = () => {
               onClick={() => {
                 clickHandler();
               }}>
-              About Me
+              About
             </Link>
           </li>
           <li className={styles.navAreaListItem}>
@@ -132,7 +132,7 @@ const Navbar = () => {
               className={styles.themesModal}
               onClick={() => setThemesModal(false)}>
               <div>
-                Your Vibe, Your Choice
+                Appearance
                 <span className={styles.bothLists}>
                   <ul>
                     <li>Light</li>

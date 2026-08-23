@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import projects from "../assets/projects";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -44,7 +45,7 @@ const Projects = () => {
     navigate("/singleProject", { state: data });
   };
 
-  const FrontCard = (props) => {
+  const FrontCard = ({ item, index }) => {
     const {
       id,
       name,
@@ -56,7 +57,7 @@ const Projects = () => {
       link,
       frontImage,
       images,
-    } = props.item;
+    } = item;
     let taglist = "";
     for (let i = 0; i < filters.length; i++) {
       taglist += "#";
@@ -64,7 +65,21 @@ const Projects = () => {
       taglist += " ";
     }
     return (
-      <div className="project_card moving-element move-left">
+      <motion.div
+        className="project_card"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.5,
+          delay: (index % 3) * 0.1,
+          ease: [0.4, 0, 0.2, 1],
+        }}
+        viewport={{ once: true, amount: 0.1 }}
+        whileHover={{
+          y: -8,
+          transition: { duration: 0.3 },
+        }}
+      >
         <div className="project_card_hidden">
           <div className="project_card_icons">
             <a
@@ -87,24 +102,25 @@ const Projects = () => {
               </span>
             </a>
 
-            <span onClick={() => passCardData(props.item)}>
+            <span onClick={() => passCardData(item)}>
               <FullscreenIcon />
               More
             </span>
           </div>
           <div className="project_card_tags">
             {tags.slice(0, 8).map((tg, ind) => {
-              return <span>{tg}</span>;
+              return <span key={ind}>{tg}</span>;
             })}
           </div>
         </div>
         <img
-          onClick={() => passCardData(props.item)}
+          onClick={() => passCardData(item)}
           className="project_card_front_image"
           src={frontImage}
+          alt={name}
         />
         <div className="project_card_title">{name}</div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -115,16 +131,10 @@ const Projects = () => {
           <FrontCard
             key={index}
             item={item}
+            index={index}
           />
         ))}
       </div>
-      {/* <button
-        className="project_all_button"
-        onClick={() =>
-          isProjectAll ? projectLessHandler() : projectAllHandler()
-        }>
-        {isProjectAll ? "Show Less" : "Show All"}
-      </button> */}
     </>
   );
 };

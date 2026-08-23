@@ -9,6 +9,7 @@ const SocialCard = () => {
       <a
         href={"https://twitter.com/gunehgar__7"}
         target="_blank"
+        rel="noopener noreferrer"
         class="social twitter">
         <svg
           height="1em"
@@ -20,6 +21,7 @@ const SocialCard = () => {
       <a
         href={"https://www.linkedin.com/in/shivam-prajapati-66ba92226/"}
         target="_blank"
+        rel="noopener noreferrer"
         class="social facebook">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -33,6 +35,7 @@ const SocialCard = () => {
       <a
         href={"https://github.com/Shivam36998"}
         target="_blank"
+        rel="noopener noreferrer"
         class="social google-plus">
         <svg
           aria-hidden="true"
@@ -50,6 +53,7 @@ const SocialCard = () => {
       <a
         href={"https://www.instagram.com/shivamprajapati__7/"}
         target="_blank"
+        rel="noopener noreferrer"
         class="social instagram">
         <svg
           height="1em"

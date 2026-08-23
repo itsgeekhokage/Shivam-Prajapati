@@ -1,150 +1,115 @@
 /** @format */
 
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 import SocialCard from "../parts/SocialPallete";
 
-const About = () => {
-   useEffect(() => {
-     const scrollToTop = () => {
-       window.scrollTo({
-         top: 0,
-         behavior: "smooth",
-       });
-     };
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+};
 
-     setTimeout(scrollToTop, 200);
-   }, []);
+const About = () => {
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+    setTimeout(scrollToTop, 200);
+  }, []);
 
   return (
-    <div
+    <motion.div
       id="about"
-      className="about_main_div ">
+      className="about_main_div"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <div className="about_upper_row">
-        <div className="about_left_div moving-element move-left">
+        <motion.div
+          className="about_left_div"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+        >
           <img
             src="/images/fullPhoto.png"
             alt=""
           />
           <div></div>
-        </div>
-        <div className="about_right_div moving-element move-top">
+        </motion.div>
+        <motion.div
+          className="about_right_div"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+        >
           <h1>About Me</h1>
-          <div>
-            <span
-              role="img"
-              aria-label="rocket">
-              🚀
-            </span>{" "}
-            <p>
-              Hey there, I'm Shivam Prajapati, a B.Tech student at IIT (BHU),
-              and I'm all set to graduate in 2025 with a solid CGPA of 8.33. My
-              academic journey is a testament to my dedication to learning and
-              growth, and I'm thrilled to bring my passion for excellence to the
-              tech realm.
-            </p>
-          </div>
-
-          <div>
-            <span
-              role="img"
-              aria-label="rocket">
-              🚀
-            </span>{" "}
-            <p>
-              I'm not just your average tech enthusiast - I wield proficiency in
-              a range of programming languages and tools, from C++, JavaScript,
-              HTML, and CSS to a versatile toolkit including NodeJS, Express.JS,
-              MongoDB, ReactJS, Git, GitHub, VSCode, and Bootstrap. But it's not
-              just about the technical stuff - my approach is also marked by
-              subtle qualities like a hardworking ethos, unwavering dedication,
-              and effective communication and teamwork skills.
-            </p>
-          </div>
-          <div>
-            <span
-              role="img"
-              aria-label="rocket">
-              🚀
-            </span>{" "}
-            <p>
-              Beyond the classroom, I've dived into various projects that have
-              been dynamic learning experiences, where my hard work has blended
-              with a genuine love for technology. These endeavors have not only
-              refined my problem-solving skills but also provided me with
-              insights into the multifaceted world of technology. I'm driven by
-              a fervor for Full Stack Web Development, Backend Development, and
-              the intriguing field of Data analysis.
-            </p>
-          </div>
-          <div>
-            <span
-              role="img"
-              aria-label="rocket">
-              🚀
-            </span>{" "}
-            <p>
-              I'm eager to apply my skills in practical scenarios and I'm always
-              up for engaging discussions, exploring collaborations, or sharing
-              insights into the ever-evolving tech landscape. I'm enthusiastic
-              about embracing new opportunities and contributing to innovative
-              endeavors!
-            </p>
-          </div>
+          {[
+            `I'm Shivam Prajapati — a product engineer and Associate (Product
+            & Growth) at Dhruv Research. I own products end-to-end: architecture,
+            delivery, and iteration on live traffic. IIT (BHU) Varanasi
+            graduate, Class of 2025.`,
+            `My core stack is TypeScript and Python across React, Next.js,
+            Node.js, and FastAPI, backed by PostgreSQL, MongoDB, Docker, and
+            cloud deployment. I write code that survives contact with
+            production — tested with Jest and Vitest, built to be maintained.`,
+            `On the AI side, I've shipped voice-fraud detection running on
+            10,000+ daily audio submissions, transcript-analysis microservices,
+            RAG pipelines, and transformer-based code review. I care about
+            models that get deployed, not demos.`,
+            `Representative outcomes: analytics processing cut from 8 hours to
+            10 minutes, 99% of manual reporting automated, a vendor-CRM
+            migration that took a 2–7 day workflow down to 30 minutes, and a
+            scraping suite that reduced manual effort by 90%.`,
+          ].map((text, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.3 + i * 0.15,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+            >
+              <p>{text}</p>
+            </motion.div>
+          ))}
 
           <div className="about_lower_row">
-            <div className="about_lower_first_row">
+            <motion.div
+              className="about_lower_first_row"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+            >
               <div className="text_blue">
                 Based in: <span className="text_normal">India</span>
               </div>
               <div className="text_blue">
-                Current Company: <span className="text_normal">Sinfolix</span>{" "}
+                Current Role:{" "}
+                <span className="text_normal">
+                  Associate — Product &amp; Growth, Dhruv Research
+                </span>{" "}
               </div>
               <div className="text_blue">
-                Last Company: <span className="text_normal">Spirit</span>{" "}
+                Education:{" "}
+                <span className="text_normal">IIT (BHU) Varanasi, 2025</span>{" "}
               </div>
-            </div>
+            </motion.div>
             <div className="about_lower_second_row">
               <SocialCard />
-              {/* <div>
-                <a
-                  href=""
-                  className="social_media_icons">
-                  <GitHubIcon />
-                </a>
-              </div>
-              <div>
-                <a
-                  href=""
-                  className="social_media_icons">
-                  <LinkedInIcon />
-                </a>
-              </div>
-              <div>
-                <a
-                  href=""
-                  className="social_media_icons">
-                  X
-                </a>
-              </div>
-              <div>
-                <a
-                  href=""
-                  className="social_media_icons">
-                  <EmailIcon />
-                </a>
-              </div>
-              <div>
-                <a
-                  href=""
-                  className="social_media_icons">
-                  <InstagramIcon />
-                </a>
-              </div> */}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

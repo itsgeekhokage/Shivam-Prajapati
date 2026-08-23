@@ -13,10 +13,10 @@ const MailModel = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const mailtoUrl = `mailto:shivbhu2112564@gmail.com?subject=${encodeURIComponent(
+    const mailtoUrl = `mailto:shivam.prajapati.codes@gmail.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(
-      `Name: ${name}  LinkedIn: ${linkedIn}  Subject: ${subject}  Preferable Slot: ${preferableSlot}  Second Preferable Slot: ${secondPreferableSlot}`
+      `Name: ${name}\nLinkedIn: ${linkedIn}\nSubject: ${subject}\nPreferred Slot: ${preferableSlot}\nBackup Slot: ${secondPreferableSlot}`
     )}`;
 
     window.open(mailtoUrl, "_blank");
@@ -34,7 +34,7 @@ const MailModel = () => {
           <h3>Name</h3>
           <input
             type="text"
-            placeholder="Type Here..."
+            placeholder="Your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -43,7 +43,7 @@ const MailModel = () => {
           <h3>LinkedIn</h3>
           <input
             type="text"
-            placeholder="Type Here..."
+            placeholder="Profile URL"
             value={linkedIn}
             onChange={(e) => setLinkedIn(e.target.value)}
           />
@@ -52,25 +52,25 @@ const MailModel = () => {
           <h3>Subject</h3>
           <input
             type="text"
-            placeholder="Type Here..."
+            placeholder="What's this about?"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           />
         </div>
         <div>
-          <h3>Preferable Slot</h3>
+          <h3>Preferred Slot</h3>
           <input
             type="text"
-            placeholder="Type Here..."
+            placeholder="e.g. Tue 4:00 PM IST"
             value={preferableSlot}
             onChange={(e) => setPreferableSlot(e.target.value)}
           />
         </div>
         <div>
-          <h3>Second Preferable Slot</h3>
+          <h3>Backup Slot</h3>
           <input
             type="text"
-            placeholder="Type Here..."
+            placeholder="e.g. Thu 11:00 AM IST"
             value={secondPreferableSlot}
             onChange={(e) => setSecondPreferableSlot(e.target.value)}
           />
