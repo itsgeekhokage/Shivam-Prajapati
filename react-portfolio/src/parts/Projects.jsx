@@ -1,69 +1,38 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import projects from "../assets/projects";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LanguageIcon from "@mui/icons-material/Language";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import LockIcon from "@mui/icons-material/Lock";
+
+const groups = [
+  {
+    key: "professional",
+    title: "Professional Projects",
+    subtitle: "Shipped at work and client engagements",
+    items: projects.professional,
+  },
+  {
+    key: "personal",
+    title: "Personal Projects",
+    subtitle: "Side experiments — currently in the lab",
+    items: projects.personal,
+  },
+];
 
 const Projects = () => {
-  const filters = [
-    "FrontEnd",
-    "BackEnd",
-    "FullStack",
-    "HTML",
-    "CSS",
-    "JS",
-    "ReactJs",
-    "NextJs",
-    "NodeJs",
-    "ExpressJs",
-    "Socket",
-    "Material UI",
-    "MongoDB",
-    "SQL",
-  ];
-
-  let [projectList, setProjectList] = useState(projects);
-
-  let [isProjectAll, setIsProjectAll] = useState(false);
-
   const navigate = useNavigate();
-
-  const projectAllHandler = () => {
-    document.querySelector(".projects_area").style.height = "auto";
-    setIsProjectAll(true);
-  };
-  const projectLessHandler = () => {
-    document.querySelector(".projects_area").style.height = "60vh";
-    setIsProjectAll(false);
-  };
 
   const passCardData = (data) => {
     navigate("/singleProject", { state: data });
   };
 
   const FrontCard = ({ item, index }) => {
-    const {
-      id,
-      name,
-      category,
-      tags,
-      filters,
-      description,
-      code,
-      link,
-      frontImage,
-      images,
-    } = item;
-    let taglist = "";
-    for (let i = 0; i < filters.length; i++) {
-      taglist += "#";
-      taglist += filters[i];
-      taglist += " ";
-    }
+    const { name, tags, code, link, frontImage, comingSoon } = item;
     return (
       <motion.div
         className="project_card"
@@ -82,26 +51,37 @@ const Projects = () => {
       >
         <div className="project_card_hidden">
           <div className="project_card_icons">
-            <a
-              href={code}
-              target="_blank"
-              rel="noopener noreferrer">
-              <span>
-                <GitHubIcon />
-                Code
+            {comingSoon ? (
+              <span className="project_card_coming">
+                <LockIcon />
+                Soon
               </span>
-            </a>
-
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer">
-              <span>
-                <LanguageIcon />
-                Live
-              </span>
-            </a>
-
+            ) : (
+              <>
+                {code && (
+                  <a
+                    href={code}
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <span>
+                      <GitHubIcon />
+                      Code
+                    </span>
+                  </a>
+                )}
+                {link && (
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <span>
+                      <LanguageIcon />
+                      Live
+                    </span>
+                  </a>
+                )}
+              </>
+            )}
             <span onClick={() => passCardData(item)}>
               <FullscreenIcon />
               More
@@ -113,6 +93,9 @@ const Projects = () => {
             })}
           </div>
         </div>
+        {comingSoon && (
+          <div className="project_card_soon">Coming Soon</div>
+        )}
         <img
           onClick={() => passCardData(item)}
           className="project_card_front_image"
@@ -126,15 +109,23 @@ const Projects = () => {
 
   return (
     <>
-      <div className="projects_area">
-        {projectList.map((item, index) => (
-          <FrontCard
-            key={index}
-            item={item}
-            index={index}
-          />
-        ))}
-      </div>
+      {groups.map((group) => (
+        <React.Fragment key={group.key}>
+          <div className="project_section_title">
+            <h2>{group.title}</h2>
+            <span>{group.subtitle}</span>
+          </div>
+          <div className="projects_area">
+            {group.items.map((item, index) => (
+              <FrontCard
+                key={item.id}
+                item={item}
+                index={index}
+              />
+            ))}
+          </div>
+        </React.Fragment>
+      ))}
     </>
   );
 };

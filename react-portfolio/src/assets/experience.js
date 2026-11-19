@@ -1,3 +1,4 @@
+
 const experience = [
     {
         type: "professional",
@@ -5,10 +6,12 @@ const experience = [
         company: "Dhruv Research",
         date: "Oct 2025 – Present",
         description: [
-            "Own Sheet By Sheet end-to-end — grew it from a single summary window into a multi-window analytics platform; redesigned the schema and DB architecture, cutting processing time from 8 hours to 10 minutes.",
-            "Designed and deployed AI microservices for transcript analysis, quality scoring, and automated insight generation.",
-            "Built a production-grade scraping suite for automated partner-platform extraction, improving coverage and cutting manual effort by 90%.",
+            "Improved the company’s AI transcription platform by redesigning its processing pipeline, achieving approximately 900% improvement in transcription accuracy while reducing per- sample processing costs by 50 % ",
+            "Enhanced Dhruva GPT, a database-connected chatbot, by optimizing APIs, refining prompt instructions, and implementing evaluation workflows to improve response accuracy and reduce hallucinations.",
+            "Designed and optimized SBS AC review dashboards using microservices, caching, and middleware, reducing review - loading latency to a maximum of 5 seconds.",
+            "Built high-volume data-processing services that convert approximately 6 GB of data and 700K+ rows into analytical summaries in approximately 30 seconds, with cached responses available in approximately 9 seconds."
         ],
+        tech: ["Python", "JavaScript", "React.js", "Next.js", "Express.js", "FastAPI", "Fastify", "PostgreSQL", "MySQL", "MongoDB", "PrismaORM", "OpenAI", "FFmPeg", "HuggingFace"],
         links: [{ text: "Website", link: "https://dhruvresearch.com/" }],
         projects: [{ text: "Sheet By Sheet", link: "https://sbs.dhruv-apps.com/" }],
     },
@@ -18,8 +21,9 @@ const experience = [
         company: "Dhruv Research",
         date: "May 2025 – Sept 2025",
         description: [
-            "Engineered Sheet By Sheet, an automated cross-sheet analytics pipeline that reduced manual reporting time by 99%.",
-            "Built a scalable LMS with quizzes, videos, and role-based dashboards for field-agent training.",
+            "Redesigned the Contribution Summary database and introduced caching, access control, and optimized data structures, reducing database storage consumption by approximately 33 % ",
+            "Developed and integrated a Training CRM/LMS for agent onboarding and audit assessments, supporting 5,000+ monthly users and 150 + teams.",
+            "Built dynamic analytics workflows that normalized heterogeneous data dumps, resolved column aliases, and generated analytical summaries with approximately 9-second API latency."
         ],
         links: [{ text: "Website", link: "https://dhruvresearch.com/" }],
         projects: [
@@ -34,6 +38,8 @@ const experience = [
         date: "Dec 2024 – Apr 2025",
         description: [
             "Shipped a PyAnnote–FastAPI voice-fraud detection pipeline achieving 92% accuracy across 10,000+ daily audio submissions.",
+            "Built a cost-efficient AI transcription platform supporting transcription, speaker diarization, fraud detection, and number - to - speaker identification, completing approximately 85 % of targeted business objectives",
+            "Developed a dynamic Contribution Summary portal that automated data normalization and reduced report-generation time from approximately 2 hours to 5 seconds "
         ],
         links: [{ text: "Website", link: "https://dhruvresearch.com/" }],
         projects: [],

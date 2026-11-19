@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.25" r="0.6">
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#4ade80" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="#161622"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04">
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+    <line x1="200" y1="0" x2="200" y2="750"/>
+    <line x1="400" y1="0" x2="400" y2="750"/>
+    <line x1="600" y1="0" x2="600" y2="750"/>
+    <line x1="800" y1="0" x2="800" y2="750"/>
+    <line x1="1000" y1="0" x2="1000" y2="750"/>
+  </g>
+  <g stroke="#60a5fa" stroke-width="3" opacity="0.8">
+    <line x1="820" y1="240" x2="950" y2="360"/>
+    <line x1="950" y1="360" x2="820" y2="480"/>
+    <line x1="950" y1="360" x2="1090" y2="360"/>
+  </g>
+  <circle cx="820" cy="240" r="38" fill="url(#green)"/>
+  <circle cx="820" cy="480" r="38" fill="url(#blue)"/>
+  <circle cx="1090" cy="360" r="38" fill="url(#green)" opacity="0.85"/>
+  <circle cx="950" cy="360" r="52" fill="none" stroke="#4ade80" stroke-width="4"/>
+  <circle cx="950" cy="360" r="26" fill="#4ade80"/>
+  <g fill="#161622">
+    <rect x="938" y="348" width="24" height="5" rx="2.5"/>
+    <rect x="938" y="357" width="24" height="5" rx="2.5"/>
+    <rect x="938" y="366" width="16" height="5" rx="2.5"/>
+  </g>
+  <text x="90" y="330" font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="800" fill="#ffffff" letter-spacing="-2">AgentOps</text>
+  <text x="92" y="400" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600" fill="#4ade80">Hire. Train. Coordinate. At scale.</text>
+  <text x="92" y="450" font-family="'JetBrains Mono', monospace" font-size="24" fill="#8b8ba7">calls · whatsapp · 2-layer cache · sqs workers</text>
+</svg>

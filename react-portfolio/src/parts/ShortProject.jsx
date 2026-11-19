@@ -24,7 +24,7 @@ const ShortProject = () => {
       </div>
 
       <div className={styles.list}>
-        {projects.slice(0, 3).map((item, key) => {
+        {projects.professional.slice(0, 3).map((item, key) => {
           return (
             <motion.div
               className={styles.card}
