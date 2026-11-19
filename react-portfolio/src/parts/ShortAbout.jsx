@@ -26,8 +26,8 @@ const ShortAbout = () => {
             systems running on live traffic.
           </li>
           <li>
-            <strong>Stack:</strong> TypeScript, Python, React, Node.js,
-            FastAPI, PostgreSQL, Docker.
+            <strong>Stack:</strong> Python, JavaScript, SQL, React, Node.js,
+            FastAPI, PostgreSQL, Redis, AWS.
           </li>
           <li>
             <strong>Education:</strong> B.Tech, IIT (BHU) Varanasi — Class of

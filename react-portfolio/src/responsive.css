@@ -83,7 +83,7 @@
   }
   .ed_edFullBox {
     width: 90%;
-    height: auto;
+    min-height: 0;
     margin: 2rem 0;
   }
 

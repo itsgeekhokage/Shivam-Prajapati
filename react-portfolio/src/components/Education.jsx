@@ -9,12 +9,11 @@ const pageVariants = {
   exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
 };
 
+const HINT = "Hover a milestone on the timeline to view details";
+
 const Education = () => {
-  let [tran, setTran] = useState(0);
   let [full, setFull] = useState(0);
-  let [content, setContent] = useState(
-    "Hover a milestone on the timeline to view details"
-  );
+  let [content, setContent] = useState(HINT);
 
   const general = (
     <p className="moving-element move-top">
@@ -135,24 +134,11 @@ const Education = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.3 + i * 0.15 }}
-                    onMouseOver={() => {
-                      setContent(item.data);
-                      setTran(1);
-                    }}
-                    onMouseLeave={() => {
-                      setContent(
-                        "Hover a milestone on the timeline to view details"
-                      );
-                      setTran(0);
-                    }}
+                    onMouseOver={() => setContent(item.data)}
                   >
                     <div className="ed_box text_normal">{item.year}</div>
                     <div className="ed_lines"></div>
-                    <motion.div
-                      className="ed_circle"
-                      whileHover={{ scale: 1.8 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    ></motion.div>
+                    <div className="ed_circle"></div>
                     <div className="ed_lines"></div>
                     <div className="ed_box text_normal"> {item.label} </div>
                   </motion.div>
@@ -164,14 +150,12 @@ const Education = () => {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              style={
-                content ===
-                "Hover a milestone on the timeline to view details"
-                  ? { height: "auto", color: "rgb(238, 255, 0)" }
-                  : {}
-              }
             >
-              {content}
+              {content === HINT ? (
+                <p className="ed_hint">{HINT}</p>
+              ) : (
+                content
+              )}
             </motion.div>
           </motion.div>
         ) : (
