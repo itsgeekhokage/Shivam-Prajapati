@@ -155,7 +155,7 @@ const Home = () => {
               {
                 icon: <CloudDownloadIcon />,
                 text: "Download Resume",
-                link: "https://drive.google.com/file/d/1znHWJS6fgoGC4rj9tWQb257wpH4Orzd0/view?usp=sharing",
+                link: "https://drive.google.com/file/d/1cFjgEFVR_6db1KZRZC-A-PJkk7-MYOhW/view?usp=sharing",
               },
               {
                 icon: <WebStoriesIcon />,
