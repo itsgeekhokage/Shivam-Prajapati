@@ -1,11 +1,10 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import ContrastIcon from "@mui/icons-material/Contrast";
 import { CloseTwoTone, MenuTwoTone } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { Menu } from "@mui/material";
 import colorThemes from "../assets/colorThemes";
 
 const Navbar = () => {
@@ -16,7 +15,7 @@ const Navbar = () => {
 
   const handleTheme = (color, mode) => {
     const pallete = colorThemes.find((item) => item.name === color);
-    let theme = mode == "light" ? pallete.light : pallete.dark;
+    let theme = mode === "light" ? pallete.light : pallete.dark;
     const root = document.documentElement;
     root.style.setProperty("--primary-color", theme.primaryColor);
     root.style.setProperty("--secondary-color", theme.secondaryColor);

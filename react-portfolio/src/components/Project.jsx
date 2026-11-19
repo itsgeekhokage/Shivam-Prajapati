@@ -1,9 +1,8 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Projects from "../parts/Projects";
-import SingleProject from "../parts/SingleProject";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },

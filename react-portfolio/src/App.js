@@ -16,23 +16,26 @@ import "./responsive.css";
 import SingleProject from "./parts/SingleProject";
 import Experience from "./components/Experience";
 import MailModel from "./bits/MailModel";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/edu" element={<Education />} />
-        <Route path="/exp" element={<Experience />} />
-        <Route path="/skill" element={<Skill />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/singleProject" element={<SingleProject />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/fixCall" element={<MailModel />} />
-      </Routes>
-    </AnimatePresence>
+    <ErrorBoundary>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/edu" element={<Education />} />
+          <Route path="/exp" element={<Experience />} />
+          <Route path="/skill" element={<Skill />} />
+          <Route path="/project" element={<Project />} />
+          <Route path="/singleProject" element={<SingleProject />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/fixCall" element={<MailModel />} />
+        </Routes>
+      </AnimatePresence>
+    </ErrorBoundary>
   );
 }
 
